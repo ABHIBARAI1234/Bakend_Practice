@@ -18,6 +18,8 @@ dns.setServers(["8.8.8.8", "1.1.1.1"]);
 //   '8.8.8.8:1053',
 //   '[2001:4860:4860::8888]:1053',
 // ]);
+const app = express();
+app.use(express.json());
 connectDB()
 .then(()=>{
     app.listen(process.env.PORT || 8000,()=>{
