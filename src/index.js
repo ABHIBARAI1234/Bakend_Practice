@@ -1,9 +1,11 @@
-import express from "express"
+
 import connectDB from "./db/index.js";
 import dotenv from "dotenv";
 
 import dns from "node:dns";
 import { error } from "node:console";
+import { app } from "./app.js";
+
 
 
 
@@ -12,14 +14,8 @@ dotenv.config({
 })
 
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
-// dns.setServers([
-//   '8.8.8.8',
-//   '[2001:4860:4860::8888]',
-//   '8.8.8.8:1053',
-//   '[2001:4860:4860::8888]:1053',
-// ]);
-const app = express();
-app.use(express.json());
+
+
 connectDB()
 .then(()=>{
     app.listen(process.env.PORT || 8000,()=>{
@@ -30,5 +26,4 @@ connectDB()
 .catch((err)=>{
     console.log("MONGO db connection failed !!!",err);
 })
-
 
